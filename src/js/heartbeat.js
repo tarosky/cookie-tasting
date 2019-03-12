@@ -44,7 +44,7 @@
   // Check periodically user is logged in.
   setInterval( function() {
     CookieTasting.confirm();
-  }, CookieTasting.getInterval() * 10 );
+  }, CookieTasting.getInterval() * 1000 );
 
   // Check if timestamp is outdated.
   $( document ).ready( function() {

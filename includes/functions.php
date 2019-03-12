@@ -50,7 +50,7 @@ function cookie_tasting_values( $user_id = 0 ) {
 	$user   = get_userdata( $user_id );
 	$values = [
 		'name'         => $user ? $user->display_name : cookie_tasting_guest_name(),
-		'last_updated' => $user ? current_time( 'timestamp' ) : 0,
+		'last_updated' => $user ? current_time( 'timestamp', true ) : 0,
 	];
 	$values = apply_filters( 'cookie_tasting_values', $values, $user_id );
 	return $values;

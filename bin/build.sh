@@ -13,6 +13,7 @@ curl -L https://raw.githubusercontent.com/fumikito/wp-readme/master/wp-readme.ph
 rm -rf node_modules
 rm package-lock.json
 rm .gitignore
+rm -rf .git
 #rm -rf tests
 rm -rf bin
 #rm -rf phpcs.xml.dist

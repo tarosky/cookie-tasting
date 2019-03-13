@@ -5,13 +5,14 @@ Tags: cookie, membership, cache
 Requires at least: 5.0  
 Tested up to: 5.1    
 Stable tag: 1.0.0  
-License: GPLv3 or later
+License: GPL 3.0 or later  
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Detect user login only with cookie. The best helper for cached WordPress sites.
 
 ## Description
 
-This plugin set user cookie.
+This plugin sets user cookie.
 
 ### Visibility
 
@@ -53,4 +54,25 @@ jQuery( document ).on( 'cookie.tasting', function( event, response ) {
 } );
 ```
 
-If you use react or something, updated the status.
+If you use react or something, updated the status with `setState()`.
+
+## Installation
+
+* Download zip file and unpack it.
+* Upload the directory to `wp-content/plugins`.
+* Go to WordPress admin screen and activate this plugin.
+
+**Recommendation:** Search on WordPress admin screen and install it.
+
+## Requently Asked Questions
+
+### How to Contribute
+
+This plugin is hosted on [Github](https://github.com/tarosky/cookie-tasting).
+Please feel free to make issue or send pull requests.
+
+## Changelog
+
+### 1.0.0
+
+* Initial release.

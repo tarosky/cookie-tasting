@@ -10,6 +10,9 @@
 
   'use strict';
 
+  /**
+   * Check current status.
+   */
   CookieTasting.confirm = () => {
     const debugging = CookieTasting.debug && window.console;
     let now = new Date();
@@ -23,7 +26,7 @@
     if ( debugging ) {
       console.log( 'Confirming: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
     }
-
+    // Fetch cookie test.
     wp.apiFetch( {
       path: 'cookie/v1/heartbeat',
       method: 'POST',
@@ -37,6 +40,24 @@
       if ( debugging ) {
         let finished = new Date();
         console.log( 'Finished: ' + finished.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( finished.getTime() / 1000 ) );
+      }
+    } );
+  };
+
+  /**
+   * Test cookie before do something.
+   *
+   * @return {Promise}
+   */
+  CookieTasting.testBefore = () => {
+    return wp.apiFetch( {
+      path: 'cookie/v1/heartbeat',
+      method: 'POST',
+    } ).then( ( response ) => {
+      if ( response.login ) {
+        return response;
+      } else {
+        throw new Error( response.message );
       }
     } );
   };

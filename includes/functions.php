@@ -51,6 +51,11 @@ function cookie_tasting_values( $user_id = 0 ) {
 	$values = [
 		'name'         => $user ? $user->display_name : cookie_tasting_guest_name(),
 		'last_updated' => $user ? current_time( 'timestamp', true ) : 0,
+		'avatar'       => $user ? get_avatar_url( $user_id, apply_filters( 'cookie_tasting_avatar_args', [
+			'size' => 60,
+		], $user_id ) ) : '',
+		'logout'       => $user ? wp_create_nonce( 'log-out' ) : '',
+		'api'          => wp_create_nonce( 'wp_rest' ),
 	];
 	$values = apply_filters( 'cookie_tasting_values', $values, $user_id );
 	return $values;

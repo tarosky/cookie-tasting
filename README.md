@@ -66,7 +66,7 @@ If you use react or something, updated the status with `setState()`.
 
 **Recommendation:** Search on WordPress admin screen and install it.
 
-## Requently Asked Questions
+## Frequently Asked Questions
 
 ### How to Contribute
 

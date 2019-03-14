@@ -3,7 +3,7 @@
 Contributors: Takahshi_Fumiki, tarosky  
 Tags: cookie, membership, cache  
 Requires at least: 5.0  
-Tested up to: 5.1    
+Tested up to: 5.1  
 Stable tag: 1.0.0  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -12,7 +12,9 @@ Detect user login only with cookie. The best helper for cached WordPress sites.
 
 ## Description
 
-This plugin sets user cookie.
+This plugin sets user cookie when user is logged in.
+You can use cookie as data store,
+so you can use it as UI resource.
 
 ### Visibility
 

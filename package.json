@@ -11,7 +11,8 @@
   "scripts": {
     "start": "gulp build",
     "watch": "gulp watch",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "test": "echo \"No test found.\""
   },
   "author": "Tarosky inc.",
   "license": "GPL-3.0-or-later",

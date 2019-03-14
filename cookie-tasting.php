@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/tarosky/cookie-tasting
  * Description: User can
  * Author: Tarosky INC.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author URI: https://tarosky.co.jp
  * License: GPL3 or later
  * Text Domain: cookie

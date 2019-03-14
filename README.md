@@ -38,7 +38,7 @@ You can control elements visibility with CSS.
 
 You can use Global Object `CookieTasting` for utility.
 
-- `CookieTasting.userName()` Returns user name. If not logged in, returns 'Geust'.
+- `CookieTasting.userName()` Returns user name. If not logged in, returns 'Guest'.
 - `CookieTasting.lastUpdated()` Returns timestamp of last log in check. If this equals 0, it means that user is anonymous.
 
 Besides that, this plugin checks periodically log-in status.

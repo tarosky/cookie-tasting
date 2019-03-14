@@ -15,6 +15,7 @@ rm package-lock.json
 rm .gitignore
 rm -rf .git
 #rm -rf tests
+rm .travis.yml
 rm -rf bin
 #rm -rf phpcs.xml.dist
 #rm -rf phpunit.xml.dist

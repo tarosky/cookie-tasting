@@ -7,6 +7,15 @@
  */
 
 /**
+ * Should secure cookie?
+ *
+ * @return bool
+ */
+function cookie_tasting_should_be_secure() {
+	return false !== strpos( get_option( 'siteurl' ), 'https://' );
+}
+
+/**
  * Update cookie
  *
  * @param int $user_id
@@ -16,9 +25,11 @@ function cookie_tasting_record( $user_id ) {
 	// 2 years.
 	$expires = apply_filters( 'cookie_tasting_period', 60 * 60 * 24 * 365 * 2 );
 	$expires += current_time( 'timestamp', true );
+	// Check if home is SSL.
+	$is_secure = cookie_tasting_should_be_secure();
 	foreach ( $data as $key => $value ) {
 		$cookie_name = "ctwp_{$key}";
-		setcookie( $cookie_name,  $value, $expires, COOKIEPATH, COOKIE_DOMAIN, true, false );
+		setcookie( $cookie_name,  $value, $expires, COOKIEPATH, COOKIE_DOMAIN, $is_secure, false );
 	}
 }
 
@@ -65,9 +76,10 @@ function cookie_tasting_values( $user_id = 0 ) {
  * Clear all cookie.
  */
 function cookie_tasting_flush() {
+	$secure = cookie_tasting_should_be_secure();
 	foreach ( array_keys( cookie_tasting_values() ) as $key ) {
 		$cookie_name = "ctwp_{$key}";
 		// Clear cookie.
-		setcookie( $cookie_name, ' ', time() - YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, true, false );
+		setcookie( $cookie_name, ' ', time() - YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, $secure, false );
 	}
 }

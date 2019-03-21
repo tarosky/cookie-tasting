@@ -4,7 +4,7 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: cookie, membership, cache  
 Requires at least: 5.0  
 Tested up to: 5.1  
-Stable tag: 1.0.2  
+Stable tag: 1.0.3  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -75,10 +75,14 @@ Please feel free to make issue or send pull requests.
 
 ## Changelog
 
+### 1.0.3
+
+* Add filter to cookie detection API.
+
 ### 1.0.2
 
 * Bugfix: if home url is not SSL, cookie `$secure` flag is now false.
-  But we sincerely recommend protecte your site under SSL.
+  But we sincerely recommend protecting your site under SSL.
 
 ### 1.0.0
 

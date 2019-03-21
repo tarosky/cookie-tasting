@@ -40,7 +40,7 @@ add_action( 'rest_api_init', function() {
 				return true;
 			},
 			'callback' => function( WP_REST_Request $request ) {
-				if ( ! is_user_logged_in() ) {
+				if ( ! apply_filters( 'cookie_tasting_is_user_logged_in', is_user_logged_in() ) ) {
 					cookie_tasting_flush();
 					return new WP_REST_Response( [
 						'login' => false,

@@ -11,9 +11,23 @@
   'use strict';
 
   /**
+   * Update REST API nonce.
+   */
+  CookieTasting.updateNonce = () => {
+    // Refresh API nonce before checking.
+    const nonce = CookieTasting.get( 'api' );
+    if ( nonce ) {
+      // Nonce updated.
+      wp.apiFetch.use( wp.apiFetch.createNonceMiddleware( nonce ) );
+    }
+  };
+
+  /**
    * Check current status.
    */
   CookieTasting.confirm = () => {
+    CookieTasting.updateNonce();
+    // Check if we should confirm cookies.
     const debugging = CookieTasting.debug && window.console;
     let now = new Date();
     // Do nothing if no need to check.
@@ -37,6 +51,8 @@
     } ).finally( () => {
       // Refresh class name.
       CookieTasting.setClassName();
+      // Update nonce
+      CookieTasting.updateNonce();
       if ( debugging ) {
         let finished = new Date();
         console.log( 'Finished: ' + finished.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( finished.getTime() / 1000 ) );
@@ -65,11 +81,21 @@
   // Check periodically user is logged in.
   setInterval( function() {
     CookieTasting.confirm();
-  }, CookieTasting.getInterval() * 1000 );
+  }, CookieTasting.getInterval() * 1000 / 2 );
 
   // Check if timestamp is outdated.
   $( document ).ready( function() {
-    CookieTasting.confirm();
+    if ( CookieTasting.get( 'refresh_nonce' ) ) {
+      $.get( CookieTasting.nonce_ep ).done( ( response ) => {
+
+      } ).fail( (err) => {
+
+      } ).always( () => {
+        CookieTasting.confirm();
+      } );
+    } else {
+      CookieTasting.confirm();
+    }
   } );
 
 })( jQuery );

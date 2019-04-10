@@ -35,6 +35,8 @@ function cookie_tasting_version() {
  * Initialize Cookie setting.
  */
 function cookie_tasting_init() {
+	// Load autoloader
+	require __DIR__ . '/vendor/autoload.php';
 	// Load text domain.
 	load_plugin_textdomain( 'cookie', false, basename( __DIR__ ) . '/languages' );
 	// Includes all hooks.

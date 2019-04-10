@@ -62,6 +62,7 @@ function cookie_tasting_values( $user_id = 0 ) {
 	$values = [
 		'name'         => $user ? $user->display_name : cookie_tasting_guest_name(),
 		'last_updated' => $user ? current_time( 'timestamp', true ) : 0,
+		'force_update' => '',
 		'avatar'       => $user ? get_avatar_url( $user_id, apply_filters( 'cookie_tasting_avatar_args', [
 			'size' => 60,
 		], $user_id ) ) : '',
@@ -82,4 +83,59 @@ function cookie_tasting_flush() {
 		// Clear cookie.
 		setcookie( $cookie_name, ' ', time() - YEAR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, $secure, false );
 	}
+}
+
+/**
+ * UUID key.
+ *
+ * @return string
+ */
+function cookie_tasting_uuid_key() {
+	return (string) apply_filters( 'cookie_tasting_uuid_key', 'cookie_tasting_uuid' );
+}
+
+/**
+ * Generate unique ID.
+ *
+ * @return string
+ */
+function cookie_tasting_generate_uuid() {
+	try {
+		return \Ramsey\Uuid\Uuid::uuid4()->toString();
+	} catch ( \Exception $e ) {
+		return uniqid( 'ct-', true );
+	}
+}
+
+/**
+ * Detect if user has saved UUID.
+ *
+ * @param null|int $user_id
+ * @return bool
+ */
+function cookie_tasting_uuid_exists( $user_id = null ) {
+	if ( is_null( $user_id ) ) {
+		$user_id = get_current_user_id();
+	}
+	return $user_id && get_user_meta( $user_id, cookie_tasting_uuid_key(), true );
+}
+
+/**
+ * Get current_user's UUID.
+ *
+ * @param null|int $user_id
+ * @return string
+ */
+function cookie_tasting_get_uuid( $user_id = null ) {
+	if ( is_null( $user_id ) ) {
+		$user_id = get_current_user_id();
+	}
+	if ( ! $user_id ) {
+		// User is not logged in.
+		return cookie_tasting_generate_uuid();
+	}
+	if ( ! cookie_tasting_uuid_exists( $user_id ) ) {
+		update_user_meta( $user_id, cookie_tasting_uuid_key(), cookie_tasting_generate_uuid() );
+	}
+	return get_user_meta( $user_id, cookie_tasting_uuid_key(), true );
 }

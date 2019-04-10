@@ -80,6 +80,9 @@ CookieTasting = Object.assign( CookieTasting, {
    * @return {boolean}
    */
   shouldConfirm() {
+    if ( this.get( 'force_update' ) ) {
+      return true;
+    }
     return 0 < this.lastUpdated() && this.isExpired();
   },
 

@@ -2,9 +2,9 @@
 /*
  * Plugin Name: Cookie Tasting
  * Plugin URI: https://wordpress.org/plugins/cookie-tasting/
- * Description: User can
+ * Description: Detect user login only with cookie. The best helper for cached WordPress sites.
  * Author: Tarosky INC.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author URI: https://tarosky.co.jp
  * License: GPL3 or later
  * Text Domain: cookie

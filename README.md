@@ -4,11 +4,15 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: cookie, membership, cache  
 Requires at least: 5.0  
 Tested up to: 5.1  
-Stable tag: 1.0.4  
+Stable tag: 1.0.5  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Detect user login only with cookie. The best helper for cached WordPress sites.
+
+<!-- only:github/ -->
+[![Build Status](https://travis-ci.org/tarosky/cookie-tasting.svg?branch=master)](https://travis-ci.org/tarosky/cookie-tasting)
+<!-- /only:github -->
 
 ## Description
 
@@ -115,6 +119,10 @@ This plugin is hosted on [Github](https://github.com/tarosky/cookie-tasting).
 Please feel free to make issue or send pull requests.
 
 ## Changelog
+
+### 1.0.5
+
+* Fix fatal error. `vendor` directory was missing.
 
 ### 1.0.4
 

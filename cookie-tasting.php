@@ -1,10 +1,10 @@
 <?php
 /*
  * Plugin Name: Cookie Tasting
- * Plugin URI: https://github.com/tarosky/cookie-tasting
+ * Plugin URI: https://wordpress.org/plugins/cookie-tasting/
  * Description: User can
  * Author: Tarosky INC.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author URI: https://tarosky.co.jp
  * License: GPL3 or later
  * Text Domain: cookie

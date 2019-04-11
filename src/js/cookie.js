@@ -1,5 +1,5 @@
 /**
- * Cookie tasting.
+ * Cookie tasting base utility.
  *
  * @package cookie
  */
@@ -29,6 +29,10 @@ CookieTasting = Object.assign( CookieTasting, {
     return result;
   },
 
+  isSSL(){
+    return 'https:' === document.location.protocol;
+  },
+
   /**
    * Set cookie data.
    *
@@ -41,7 +45,7 @@ CookieTasting = Object.assign( CookieTasting, {
       'path=/',
       'max-age=' + 60 * 60 * 24 * 365 * 2,
     ];
-    if ( ssl ) {
+    if ( CookieTasting.isSSL() ) {
       option.push( 'secure' );
     }
     document.cookie =  key + '=' + option.join( '; ' );

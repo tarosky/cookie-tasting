@@ -60,14 +60,15 @@ function cookie_tasting_guest_name() {
 function cookie_tasting_values( $user_id = 0 ) {
 	$user   = get_userdata( $user_id );
 	$values = [
-		'name'          => $user ? $user->display_name : cookie_tasting_guest_name(),
-		'last_updated'  => $user ? current_time( 'timestamp', true ) : 0,
+		'name'          => $user_id ? $user->display_name : cookie_tasting_guest_name(),
+		'last_updated'  => $user_id ? current_time( 'timestamp', true ) : 0,
 		'refresh_nonce' => '',
-		'avatar'        => $user ? get_avatar_url( $user_id, apply_filters( 'cookie_tasting_avatar_args', [
+		'avatar'        => $user_id ? get_avatar_url( $user_id, apply_filters( 'cookie_tasting_avatar_args', [
 			'size' => 60,
 		], $user_id ) ) : '',
-		'logout'        => $user ? wp_create_nonce( 'log-out' ) : '',
+		'logout'        => $user_id ? wp_create_nonce( 'log-out' ) : '',
 		'api'           => wp_create_nonce( 'wp_rest' ),
+		'uuid'          => $user_id ? cookie_tasting_get_uuid( $user->ID ) : '',
 	];
 	$values = apply_filters( 'cookie_tasting_values', $values, $user_id );
 	return $values;

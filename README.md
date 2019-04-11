@@ -4,7 +4,7 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: cookie, membership, cache  
 Requires at least: 5.0  
 Tested up to: 5.1  
-Stable tag: 1.0.3  
+Stable tag: 1.0.4  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -46,17 +46,58 @@ You can handle it with jQuery.
 
 ```js
 jQuery( document ).on( 'cookie.tasting', function( event, response ) {
-	if ( response.login ) {
-	    // User is logged in.
-	    // If you use React...
-	    setAttributes({ name: CookieTasting.userName() })
-	} else {
-	    // User is not logged in.
-	}
+  if ( response.login ) {
+    // User is logged in.
+    // If you use React...
+    setAttributes({ name: CookieTasting.userName() })
+  } else {
+    // User is not logged in.
+  }
 } );
 ```
 
 If you use react or something, updated the status with `setState()`.
+
+### Check Before Action
+
+If you manage cached WordPress and customizing your own theme,
+It's a good idea to implement dynamic UI components with JavaScript.
+
+You can check user's credential just before important actions.
+
+```js
+// Click action for button.
+$('.read-more').click( function( e ) {
+  e.preventDefault();
+  // Check cookie before do something.
+  CookieTasting.testBefore().then( function( response ) {
+    // Now user has fresh information.
+    // Load premium contents.
+    loadPremiumContents();
+  }).catch( function( response ) {
+    // This user is not logged in.
+    // Redirect them to login page.
+    window.locaion.href = '/wp-login.php';
+  } );
+} );
+```
+
+Plese remember adding dependency for `cookie-tasting-heartbeat` to your script.
+
+### Handle UUID
+
+By default, this plugin set UUID for each user. This will be...
+
+* Unique for each logged in user and will be saved as user_meta.
+* Also kept for anonymous user.
+
+So you can use it for Google Analytic's [User ID View](https://support.google.com/analytics/answer/3123662).
+
+```js
+const uuid = CookieTasting.get( 'uuid' );
+// For Google Analytics.
+ga( 'set', "userId", uid );
+```
 
 ## Installation
 
@@ -74,6 +115,12 @@ This plugin is hosted on [Github](https://github.com/tarosky/cookie-tasting).
 Please feel free to make issue or send pull requests.
 
 ## Changelog
+
+### 1.0.4
+
+* Update nonce for [@wordpress/wp-api-featch](https://wordpress.org/gutenberg/handbook/designers-developers/developers/packages/packages-api-fetch/) and `wpApiSettings` of [wp-api](https://developer.wordpress.org/rest-api/using-the-rest-api/backbone-javascript-client/).
+* Change REST API endpoit because it requires COOKIES properly set. The endpoint `wp-json/cookie/v1/nonce` is pseudo and it's not REST API actually, so you can refresh nonce with this endpoint. Normally, this refresh will be executed automatically, but if you get "rest_cookie_invalid_nonce", try updating permalink from "Setting > Permalink". Just click "Save" and that's it.
+* UUID will be set for current user. It's userful for tracking.
 
 ### 1.0.3
 

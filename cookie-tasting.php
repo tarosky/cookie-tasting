@@ -1,10 +1,10 @@
 <?php
 /*
  * Plugin Name: Cookie Tasting
- * Plugin URI: https://github.com/tarosky/cookie-tasting
+ * Plugin URI: https://wordpress.org/plugins/cookie-tasting/
  * Description: User can
  * Author: Tarosky INC.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author URI: https://tarosky.co.jp
  * License: GPL3 or later
  * Text Domain: cookie
@@ -35,6 +35,8 @@ function cookie_tasting_version() {
  * Initialize Cookie setting.
  */
 function cookie_tasting_init() {
+	// Load autoloader
+	require __DIR__ . '/vendor/autoload.php';
 	// Load text domain.
 	load_plugin_textdomain( 'cookie', false, basename( __DIR__ ) . '/languages' );
 	// Includes all hooks.

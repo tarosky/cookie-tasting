@@ -1,0 +1,16 @@
+{
+  "name": "tarosky/cookie-tasting",
+  "description": "Detect user login only with cookie. The best helper for cached WordPress sites.",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "fumikito",
+      "email": "guy@hametuha.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "ramsey/uuid": "^3.8"
+  }
+}

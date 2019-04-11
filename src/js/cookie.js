@@ -7,7 +7,12 @@
 /*global CookieTasting: true*/
 
 CookieTasting = Object.assign( CookieTasting, {
-  
+
+  /**
+   * Get cookie value
+   * @param name
+   * @returns {String|null}
+   */
   get( name ) {
     let result = null;
     let cookieName = name + '=';
@@ -22,6 +27,24 @@ CookieTasting = Object.assign( CookieTasting, {
       result = decodeURIComponent( allCookies.substring( startIndex, endIndex ) );
     }
     return result;
+  },
+
+  /**
+   * Set cookie data.
+   *
+   * @param {String} key
+   * @param {String} value
+   */
+  set( key, value ) {
+    const option = [
+      encodeURIComponent( value ),
+      'path=/',
+      'max-age=' + 60 * 60 * 24 * 365 * 2,
+    ];
+    if ( ssl ) {
+      option.push( 'secure' );
+    }
+    document.cookie =  key + '=' + option.join( '; ' );
   },
 
   /**
@@ -113,6 +136,11 @@ CookieTasting = Object.assign( CookieTasting, {
     return chars.join( '' );
   }
 });
+
+// Set UUID.
+if ( ! CookieTasting.get( 'uuid' ) ) {
+  CookieTasting.set( 'uuid', CookieTasting.generateUuid() );
+}
 
 // Set html document class.
 CookieTasting.setClassName();

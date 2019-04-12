@@ -40,12 +40,26 @@ add_filter( 'query_vars', function( $vars ) {
 
 /**
  * Add rewrite endpoint.
+ *
+ * @param array $rules
+ * @return array
  */
-add_filter( 'rewrite_rules_array', function( $rules ) {
+function cookie_tasting_add_rewrite_rules( $rules ) {
 	return array_merge( [
 		'^wp-json/cookie/v1/nonce/?' => 'index.php?ct-endpoint=nonce',
 	], $rules );
-}, 9999 );
+}
+add_filter( 'rewrite_rules_array', 'cookie_tasting_add_rewrite_rules', 9999 );
+
+/**
+ * Update rewrite rules if option is old.
+ */
+add_action( 'init', function() {
+	if ( version_compare( cookie_tasting_version(), get_option( 'cookie_tasting_rewrite_version', '0.0.0' ), '>' ) ) {
+		flush_rewrite_rules();
+		update_option( 'cookie_tasting_rewrite_version', cookie_tasting_version() );
+	}
+}, 1 );
 
 /**
  * Hijack request.

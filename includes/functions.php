@@ -23,18 +23,7 @@ function cookie_tasting_should_be_secure() {
 function cookie_tasting_record( $user_id ) {
 	$data    = cookie_tasting_values( $user_id );
 	foreach ( $data as $key => $value ) {
-		switch ( $key ) {
-			case 'uuid':
-				$current_value = cookie_tasting_get( 'uuid' );
-				if ( ! $user_id && $current_value ) {
-					// There is already existing cookie, so skip overwrite.
-					break;
-				}
-				break;
-			default:
-				cookie_tasting_write_cookie( $key, $value );
-				break;
-		}
+		cookie_tasting_write_cookie( $key, $value );
 	}
 }
 

@@ -48,7 +48,7 @@ CookieTasting = Object.assign( CookieTasting, {
     if ( CookieTasting.isSSL() ) {
       option.push( 'secure' );
     }
-    document.cookie =  key + '=' + option.join( '; ' );
+    document.cookie =  'ctwp_' + key + '=' + option.join( '; ' );
   },
 
   /**

@@ -69,19 +69,35 @@ add_action( 'pre_get_posts', function( WP_Query &$wp_query ) {
 		switch ( $wp_query->get( 'ct-endpoint' ) ) {
 			case 'nonce':
 				nocache_headers();
-				if ( ! apply_filters( 'cookie_tasting_is_user_logged_in', is_user_logged_in() ) ) {
-					cookie_tasting_flush();
-					wp_send_json( [
-						'login'   => false,
-						'success' => true,
-						'message' => __( 'You are not logged in.', 'cookie' ),
-					] );
-				} else {
+				/**
+				 * cookie_tasting_is_user_logged_in
+				 *
+				 * @param bool $logged_in
+				 * @return bool|WP_Error
+				 */
+				$logged_in = apply_filters( 'cookie_tasting_is_user_logged_in', is_user_logged_in() );
+				if ( true === $logged_in ) {
 					cookie_tasting_record( get_current_user_id() );
 					wp_send_json( [
 						'login'   => true,
 						'success' => true,
 						'message' => __( 'You are now logged in.', 'cookie' ),
+						'code'    => 'logged_in',
+					] );
+				} else {
+					$message = __( 'You are not logged in.', 'cookie' );
+					$code    = 'not_logged_in';
+					if ( is_wp_error( $logged_in ) ) {
+						/** @var WP_Error $logged_in */
+						$message = $logged_in->get_error_message();
+						$code    = $logged_in->get_error_code();
+					}
+					cookie_tasting_flush();
+					wp_send_json( [
+						'login'   => false,
+						'success' => true,
+						'message' => $message,
+						'code'    => $code,
 					] );
 				}
 				exit;

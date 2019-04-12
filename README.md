@@ -4,7 +4,7 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: cookie, membership, cache  
 Requires at least: 5.0  
 Tested up to: 5.1  
-Stable tag: 1.0.7  
+Stable tag: 1.0.8  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -119,6 +119,10 @@ This plugin is hosted on [Github](https://github.com/tarosky/cookie-tasting).
 Please feel free to make issue or send pull requests.
 
 ## Changelog
+
+### 1.0.8
+
+* Add filter for Cookie check API. Now you can change error message.
 
 ### 1.0.7
 

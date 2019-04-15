@@ -138,6 +138,24 @@ CookieTasting = Object.assign( CookieTasting, {
       }
     }
     return chars.join( '' );
+  },
+
+  /**
+   * Update REST API nonce.
+   */
+  updateNonce() {
+    // Refresh API nonce before checking.
+    const nonce = CookieTasting.get( 'api' );
+    if ( nonce ) {
+      // Nonce updated.
+      if ( window.wp && wp.apiFetch ) {
+        wp.apiFetch.use( wp.apiFetch.createNonceMiddleware( nonce ) );
+      }
+      // If old nonce exists, update it.
+      if( window.wpApiSettings && window.wpApiSettings.nonce ) {
+        window.wpApiSettings.nonce = nonce;
+      }
+    }
   }
 });
 
@@ -145,6 +163,9 @@ CookieTasting = Object.assign( CookieTasting, {
 if ( ! CookieTasting.get( 'uuid' ) ) {
   CookieTasting.set( 'uuid', CookieTasting.generateUuid() );
 }
+
+// Update nonce if possible.
+CookieTasting.updateNonce();
 
 // Set html document class.
 CookieTasting.setClassName();

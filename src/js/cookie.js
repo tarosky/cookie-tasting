@@ -18,10 +18,10 @@ CookieTasting = Object.assign( CookieTasting, {
     let cookieName = name + '=';
     let allCookies = document.cookie;
     let position = allCookies.indexOf( cookieName );
-    if( position !== -1 ) {
+    if ( -1 !== position ) {
       let startIndex = position + cookieName.length;
       let endIndex = allCookies.indexOf( ';', startIndex );
-      if( endIndex === -1 ) {
+      if ( -1 === endIndex ) {
         endIndex = allCookies.length;
       }
       result = decodeURIComponent( allCookies.substring( startIndex, endIndex ) );
@@ -29,7 +29,7 @@ CookieTasting = Object.assign( CookieTasting, {
     return result;
   },
 
-  isSSL(){
+  isSSL() {
     return 'https:' === document.location.protocol;
   },
 
@@ -43,7 +43,7 @@ CookieTasting = Object.assign( CookieTasting, {
     const option = [
       encodeURIComponent( value ),
       'path=/',
-      'max-age=' + 60 * 60 * 24 * 365 * 2,
+      'max-age=' + 60 * 60 * 24 * 365 * 2
     ];
     if ( CookieTasting.isSSL() ) {
       option.push( 'secure' );
@@ -126,13 +126,13 @@ CookieTasting = Object.assign( CookieTasting, {
    * @returns {string}
    */
   generateUuid() {
-    const chars = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split('');
+    const chars = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.split( '' );
     for ( let i = 0, len = chars.length; i < len; i++ ) {
-      switch ( chars[ i ] ) {
-        case "x":
+      switch ( chars[ i ]) {
+        case 'x':
           chars[ i ] = Math.floor( Math.random() * 16 ).toString( 16 );
           break;
-        case "y":
+        case 'y':
           chars[ i ] = ( Math.floor( Math.random() * 4 ) + 8 ).toString( 16 );
           break;
       }
@@ -144,15 +144,18 @@ CookieTasting = Object.assign( CookieTasting, {
    * Update REST API nonce.
    */
   updateNonce() {
+
     // Refresh API nonce before checking.
     const nonce = CookieTasting.get( 'api' );
     if ( nonce ) {
+
       // Nonce updated.
       if ( window.wp && wp.apiFetch ) {
         wp.apiFetch.use( wp.apiFetch.createNonceMiddleware( nonce ) );
       }
+
       // If old nonce exists, update it.
-      if( window.wpApiSettings && window.wpApiSettings.nonce ) {
+      if ( window.wpApiSettings && window.wpApiSettings.nonce ) {
         window.wpApiSettings.nonce = nonce;
       }
     }

@@ -22,18 +22,17 @@
     "@babel/preset-env": "^7.1.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "core-js": "^2.6.5",
     "eslint": "^5.4.0",
-    "eslint-plugin-wordpress": "^0.1.0",
+    "eslint-config-wordpress": "^2.0.0",
     "gulp": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
     "gulp-load-plugins": "^1.2",
-    "gulp-rename": "^1.4.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.4.0",
     "vinyl-named": "^1.1.0",
     "webpack": "^4.19.1",
     "webpack-stream": "^5.1.1"
-  },
-  "dependencies": {
-    "core-js": "^2.6.5"
   }
 }

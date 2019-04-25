@@ -15,13 +15,13 @@ CookieTasting.confirmed = false;
  * @returns {Promise}
  */
 CookieTasting.refreshNonce = () => {
-  return wp.apiFetch( {
-    url: CookieTasting.nonce_ep,
-  } ).then( response => {
+  return wp.apiFetch({
+    url: CookieTasting.nonce_ep
+  }).then( response => {
     CookieTasting.updateNonce();
     if ( ! CookieTasting.confirmed ) {
       CookieTasting.confirmed = true;
-      $( 'html' ).trigger( 'cookie.tasting.updated', [ response ] );
+      $( 'html' ).trigger( 'cookie.tasting.updated', [ response ]);
     }
     return response;
   });
@@ -33,39 +33,43 @@ CookieTasting.refreshNonce = () => {
  * @param {Boolean} shouldRefresh If true, nonce will be automatically refresh.
  */
 CookieTasting.confirm = ( shouldRefresh = false ) => {
+
   // Check if we should confirm cookies.
   const debugging = CookieTasting.debug && window.console;
   let now = new Date();
+
   // Do nothing if no need to check.
   if ( ! CookieTasting.shouldConfirm() ) {
     if ( debugging ) {
-      console.log( 'No need to confirm: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor(now.getTime() / 1000 ) );
+      console.log( 'No need to confirm: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
     }
     if ( shouldRefresh ) {
       CookieTasting.refreshNonce().catch( err => {
         if ( debugging ) {
           console.log( err );
         }
-      } );
+      });
     }
     return;
   }
   if ( debugging ) {
     console.log( 'Confirming: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
   }
+
   // Fetch cookie test.
   CookieTasting.refreshNonce().then( ( response ) => {
-    $( 'html' ).trigger( 'cookie.tasting.updated', [ response ] );
-  } ).catch( ( response ) => {
-    $( 'html' ).trigger( 'cookie.tasting.failed', [ response ] );
-  } ).finally( () => {
+    $( 'html' ).trigger( 'cookie.tasting.updated', [ response ]);
+  }).catch( ( response ) => {
+    $( 'html' ).trigger( 'cookie.tasting.failed', [ response ]);
+  }).finally( () => {
+
     // Refresh class name.
     CookieTasting.setClassName();
     if ( debugging ) {
       let finished = new Date();
       console.log( 'Finished: ' + finished.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( finished.getTime() / 1000 ) );
     }
-  } );
+  });
 };
 
 /**
@@ -75,10 +79,10 @@ CookieTasting.confirm = ( shouldRefresh = false ) => {
  */
 CookieTasting.testBefore = () => {
   return CookieTasting.refreshNonce().then( response => {
-    if (response.login) {
+    if ( response.login ) {
       return response;
     } else {
-      throw new Error(response.message);
+      throw new Error( response.message );
     }
   });
 };
@@ -91,4 +95,4 @@ setInterval( function() {
 // Check if timestamp is outdated.
 $( document ).ready( function() {
   CookieTasting.confirm( CookieTasting.get( 'refresh_nonce' ) );
-} );
+});

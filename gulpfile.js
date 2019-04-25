@@ -28,7 +28,12 @@ gulp.task( 'js', function() {
             use: {
               loader: 'babel-loader',
               options: {
-                presets: ['@babel/preset-env'],
+                presets: [
+                  [
+                    '@babel/preset-env',
+                    { "useBuiltIns": "usage" }
+                  ]
+                ],
                 plugins: ['@babel/plugin-transform-react-jsx']
               }
             }
@@ -58,4 +63,3 @@ gulp.task('build', gulp.parallel('js'));
 
 // Default Tasks
 gulp.task('default', gulp.series('watch'));
-

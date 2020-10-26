@@ -3,8 +3,9 @@
 Contributors: tarosky,Takahashi_Fumiki  
 Tags: cookie, membership, cache  
 Requires at least: 5.0  
-Tested up to: 5.1  
-Stable tag: 1.0.10  
+Requires PHP: 7.0  
+Tested up to: 5.5  
+Stable tag: 1.0.11  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -119,6 +120,10 @@ This plugin is hosted on [Github](https://github.com/tarosky/cookie-tasting).
 Please feel free to make issue or send pull requests.
 
 ## Changelog
+
+### 1.0.11
+
+* Display `console.log` only if `SCRIPT_DEBUG` is true.
 
 ### 1.0.10
 

@@ -159,6 +159,18 @@ CookieTasting = Object.assign( CookieTasting, {
         window.wpApiSettings.nonce = nonce;
       }
     }
+  },
+
+  /**
+   * Display console log if debug mode is on.
+   *
+   * @param {...args} arguments The arguments passed to console.log.
+   * @return {undefined}
+   */
+  log() {
+    if ( !! CookieTasting.debug && window.console ) {
+      console.log.apply( window.console, arguments );
+    }
   }
 });
 

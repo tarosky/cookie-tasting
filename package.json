@@ -1,17 +1,19 @@
 {
   "name": "cookie-tasting",
-  "version": "1.0.0",
   "homepage": "https://tarosky.co.jp",
-  "description": "Cookie handler for WordPress",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
     "url": "http://github.com/tarosky/cookie-tasting.git"
   },
   "scripts": {
-    "start": "gulp build",
+    "start": "wp-env start",
+    "update": "wp-env start --update",
+    "build": "gulp build",
     "watch": "gulp watch",
     "gulp": "gulp",
+    "cli": "wp-env run cli wp",
+    "env": "wp-env",
     "test": "echo \"No test found.\""
   },
   "author": "Tarosky inc.",
@@ -20,6 +22,7 @@
     "@babel/core": "^7.1.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@wordpress/env": "^2.1.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
     "core-js": "^2.6.5",

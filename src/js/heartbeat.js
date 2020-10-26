@@ -35,26 +35,19 @@ CookieTasting.refreshNonce = () => {
 CookieTasting.confirm = ( shouldRefresh = false ) => {
 
   // Check if we should confirm cookies.
-  const debugging = CookieTasting.debug && window.console;
   let now = new Date();
 
   // Do nothing if no need to check.
   if ( ! CookieTasting.shouldConfirm() ) {
-    if ( debugging ) {
-      console.log( 'No need to confirm: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
-    }
+    CookieTasting.log( 'No need to confirm: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
     if ( shouldRefresh ) {
       CookieTasting.refreshNonce().catch( err => {
-        if ( debugging ) {
-          console.log( err );
-        }
+        CookieTasting.log( err );
       });
     }
     return;
   }
-  if ( debugging ) {
-    console.log( 'Confirming: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
-  }
+  CookieTasting.log( 'Confirming: ' + now.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( now.getTime() / 1000 ) );
 
   // Fetch cookie test.
   CookieTasting.refreshNonce().then( ( response ) => {
@@ -65,10 +58,8 @@ CookieTasting.confirm = ( shouldRefresh = false ) => {
 
     // Refresh class name.
     CookieTasting.setClassName();
-    if ( debugging ) {
-      let finished = new Date();
-      console.log( 'Finished: ' + finished.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( finished.getTime() / 1000 ) );
-    }
+    const finished = new Date();
+    CookieTasting.log( 'Finished: ' + finished.toLocaleString(), CookieTasting.lastUpdated(), Math.floor( finished.getTime() / 1000 ) );
   });
 };
 

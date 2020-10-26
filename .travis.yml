@@ -12,8 +12,11 @@ branches:
 
 php:
   - 7.0
-  - 7.1
   - 7.2
+  - 7.4
+
+services:
+  - mysql
 
 env:
   matrix:
@@ -23,21 +26,27 @@ env:
     - SVN_REPO: https://plugins.svn.wordpress.org/cookie-tasting/
     - secure: "OJQ63m03fC6Z1GVDOyAAEJR7ByGgucvVC4m1aHN6IfDaPMmMzhfkKfxT5k3SKWDOuizPyFMkei9ZN9z8lUg0Jp4nFU7QkPIsCLPN4oxn0niS+aays0ovskPilzCnTl70emRJTOUpg1UPfiG47SctxwA/KI2g+N42Zt0OhTietJKq+v91/AmwpnBcqieUl5WPcAQLeAOKpRtUZP/7NE/J+8P1FZwSBmBEv8NiMy6bgyR7aCGJ+3UWf0RLmOAsHadG7+ruPRVzHdTGApzwAXJK1H2FG4N3wSYip1axz5wCTsHIQMYztNY901ixt8/sJ064hTKV7s6dPOThcs/az2y/GGmtXQIcX6cBSUYlM/nj2OWSvwqDzxQwFUbNCR/IdeeJVaEevmk4dgA8XUv76PKL9bYkY6xjEdcJEmvGX0mcyzdR79mEVEqOdcc8jfLP2/PMMI3bRvXyrLG00n2Wn69vf8ow7rnrtVb9YoI9c8NEc4WUF0qKAm6LHXinvMEbOw8v+4jPKhpW/R4RplIizRfdI2pMIErzaoNzTqifFI1kV5wEORZrmj+euM21zDkoRuqhWQd+5xUYA1ue1b1H9e/cZV+Dxhk6jTFz9UCEt6qq306Z26UDoM3MvTfHUb9gmt2sL22S5NdX9EYbwYwuxzluXgWILXsRBT5xZJQBCVdtM6A="
 
-matrix:
-  include:
-    - php: 7.0
-      env: WP_VERSION=5.0 WP_MULTISITE=0 WP_PULUGIN_DEPLOY=1
 
 before_script:
   - composer install
   - curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.34.0/nvm.sh
   - source $HOME/.nvm/nvm.sh
-  - nvm install v10.13.0
+  - nvm install v12.16.3
   - node --version
-  - npm install && npm start
+  - npm install
+  - npm run build
   - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
 
 script:
   - npm test
 
-after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash
+before_deploy:
+  - export WP_PLUGIN_DEPLOY=1
+
+deploy:
+  - provider: script
+    script: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash
+    on:
+      php: 7.0
+      tags: true
+      condition: $WP_VERSION = latest

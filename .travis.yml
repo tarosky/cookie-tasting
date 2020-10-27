@@ -41,7 +41,7 @@ script:
   - npm test
 
 before_deploy:
-  - export WP_PLUGIN_DEPLOY=1
+  - export WP_PULUGIN_DEPLOY=1
 
 deploy:
   - provider: script

@@ -3,6 +3,7 @@
  *
  * @package cookie
  */
+
 /* global CookieTasting: true */
 
 const $ = jQuery;

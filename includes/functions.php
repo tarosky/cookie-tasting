@@ -21,7 +21,7 @@ function cookie_tasting_should_be_secure() {
  * @param int $user_id
  */
 function cookie_tasting_record( $user_id ) {
-	$data    = cookie_tasting_values( $user_id );
+	$data = cookie_tasting_values( $user_id );
 	foreach ( $data as $key => $value ) {
 		cookie_tasting_write_cookie( $key, $value );
 	}
@@ -35,7 +35,7 @@ function cookie_tasting_record( $user_id ) {
  */
 function cookie_tasting_get( $key ) {
 	$cookie_name = 'ctwp_' . $key;
-	return isset( $_COOKIE[ $key ]  ) ? $_COOKIE[ $key ] : '';
+	return isset( $_COOKIE[ $key ] ) ? $_COOKIE[ $key ] : '';
 }
 
 /**
@@ -47,12 +47,12 @@ function cookie_tasting_get( $key ) {
  */
 function cookie_tasting_write_cookie( $key, $value ) {
 	// 2 years.
-	$expires = apply_filters( 'cookie_tasting_period', 60 * 60 * 24 * 365 * 2 );
-	$expires += current_time( 'timestamp', true );
+	$expires     = apply_filters( 'cookie_tasting_period', 60 * 60 * 24 * 365 * 2 );
+	$expires    += current_time( 'timestamp', true );
 	$cookie_name = "ctwp_{$key}";
 	// Check if home is SSL.
 	$is_secure = cookie_tasting_should_be_secure();
-	return setcookie( $cookie_name,  $value, $expires, COOKIEPATH, COOKIE_DOMAIN, $is_secure, false );
+	return setcookie( $cookie_name, $value, $expires, COOKIEPATH, COOKIE_DOMAIN, $is_secure, false );
 }
 
 /**
@@ -80,8 +80,8 @@ function cookie_tasting_guest_name() {
  * @return array
  */
 function cookie_tasting_values( $user_id = 0 ) {
-	$user   = get_userdata( $user_id );
-	$values = [
+	$user         = get_userdata( $user_id );
+	$values       = [
 		'name'          => $user_id ? $user->display_name : cookie_tasting_guest_name(),
 		'last_updated'  => $user_id ? current_time( 'timestamp', true ) : 0,
 		'refresh_nonce' => '',
@@ -93,7 +93,7 @@ function cookie_tasting_values( $user_id = 0 ) {
 	];
 	$current_uuid = cookie_tasting_get( 'uuid' );
 	if ( $user_id ) {
-		$saved_uuid = cookie_tasting_get_uuid( $user_id, true);
+		$saved_uuid = cookie_tasting_get_uuid( $user_id, true );
 		if ( $saved_uuid ) {
 			// Saved UUID exists, so use it.
 			$uuid = $saved_uuid;
@@ -107,8 +107,8 @@ function cookie_tasting_values( $user_id = 0 ) {
 	} else {
 		$uuid = $current_uuid ?: cookie_tasting_generate_uuid();
 	}
-	$values[ 'uuid' ] = $uuid;
-	$values = apply_filters( 'cookie_tasting_values', $values, $user_id );
+	$values['uuid'] = $uuid;
+	$values         = apply_filters( 'cookie_tasting_values', $values, $user_id );
 	return $values;
 }
 
@@ -118,7 +118,7 @@ function cookie_tasting_values( $user_id = 0 ) {
 function cookie_tasting_flush() {
 	$secure = cookie_tasting_should_be_secure();
 	foreach ( array_keys( cookie_tasting_values() ) as $key ) {
-		if ( in_array( $key, cookie_tasting_protected_keys() ) ) {
+		if ( in_array( $key, cookie_tasting_protected_keys(), true ) ) {
 			continue;
 		}
 		$cookie_name = "ctwp_{$key}";
@@ -186,7 +186,7 @@ function cookie_tasting_get_uuid( $user_id = null, $raw = false ) {
 		// User is not logged in.
 		return $raw ? '' : cookie_tasting_generate_uuid();
 	}
-	if ( !$raw && !cookie_tasting_uuid_exists( $user_id ) ) {
+	if ( ! $raw && ! cookie_tasting_uuid_exists( $user_id ) ) {
 		update_user_meta( $user_id, cookie_tasting_uuid_key(), cookie_tasting_generate_uuid() );
 	}
 	return get_user_meta( $user_id, cookie_tasting_uuid_key(), true );

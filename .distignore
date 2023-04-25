@@ -7,7 +7,7 @@
 .gitignore
 .node-version
 .stylelintrc.json
-.wordpress_org
+.wordpress-org
 .wp-env.json
 node_modules
 composer.lock
@@ -17,7 +17,6 @@ phpunit.xml.dist
 README.md
 webpack.config.js
 wordpress
-vendor
 bin
 tests
 cookie-tasting.php.bak

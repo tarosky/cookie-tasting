@@ -1,41 +1,39 @@
 {
-  "name": "cookie-tasting",
-  "homepage": "https://tarosky.co.jp",
-  "main": "gulpfile.js",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/tarosky/cookie-tasting.git"
-  },
-  "scripts": {
-    "start": "wp-env start",
-    "update": "wp-env start --update",
-    "build": "gulp build",
-    "watch": "gulp watch",
-    "gulp": "gulp",
-    "cli": "wp-env run cli wp",
-    "env": "wp-env",
-    "test": "echo \"No test found.\""
-  },
-  "author": "Tarosky inc.",
-  "license": "GPL-3.0-or-later",
-  "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "@babel/plugin-transform-react-jsx": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "@wordpress/env": "^2.1.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
-    "core-js": "^2.6.5",
-    "eslint": "^5.4.0",
-    "eslint-config-wordpress": "^2.0.0",
-    "gulp": "^4.0.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-load-plugins": "^1.2",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-rename": "^1.4.0",
-    "vinyl-named": "^1.1.0",
-    "webpack": "^4.19.1",
-    "webpack-stream": "^5.1.1"
-  }
+	"name": "cookie-tasting",
+	"homepage": "https://tarosky.co.jp",
+	"main": "gulpfile.js",
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/tarosky/cookie-tasting.git"
+	},
+	"scripts": {
+		"start": "wp-env start",
+		"update": "wp-env start --update",
+		"build": "gulp build",
+		"watch": "gulp watch",
+		"gulp": "gulp",
+		"cli": "wp-env run cli wp",
+		"env": "wp-env",
+		"lint": "wp-scripts lint-js src/js/**/*.js",
+		"fix": "wp-scripts lint-js -src/js/**/*.js",
+		"scripts": "wp-scripts",
+		"test": "echo \"No test found.\""
+	},
+	"author": "Tarosky inc.",
+	"license": "GPL-3.0-or-later",
+	"devDependencies": {
+		"@wordpress/env": "^5.0.0",
+		"@wordpress/scripts": "^26.2.0",
+		"babel-eslint": "^10.0.1",
+		"babel-loader": "^8.0.5",
+		"core-js": "^2.6.5",
+		"gulp": "^4.0.0",
+		"gulp-load-plugins": "^1.2",
+		"gulp-notify": "^3.2.0",
+		"gulp-plumber": "^1.2.0",
+		"gulp-rename": "^1.4.0",
+		"vinyl-named": "^1.1.0",
+		"webpack": "^4.19.1",
+		"webpack-stream": "^5.1.1"
+	}
 }

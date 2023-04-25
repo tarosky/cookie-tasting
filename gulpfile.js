@@ -51,23 +51,15 @@ gulp.task( 'js', function() {
     .pipe( gulp.dest( './assets/js' ) );
 });
 
-
-// ES Lint
-gulp.task( 'eslint', function() {
-  return gulp.src([ 'src/**/*.js' ])
-    .pipe( $.eslint({ useEslintrc: true }) )
-    .pipe( $.eslint.format() );
-});
-
 // watch
 gulp.task( 'watch', function() {
 
   // Handle JS
-  gulp.watch([ 'src/js/**/*.js' ], gulp.parallel( 'js', 'eslint' ) );
+  gulp.watch([ 'src/js/**/*.js' ], gulp.parallel( 'js' ) );
 });
 
 // Build
-gulp.task( 'build', gulp.parallel( 'js', 'eslint' ) );
+gulp.task( 'build', gulp.parallel( 'js' ) );
 
 // Default Tasks
 gulp.task( 'default', gulp.series( 'watch' ) );

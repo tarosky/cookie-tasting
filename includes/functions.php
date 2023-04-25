@@ -65,7 +65,7 @@ function cookie_tasting_interval() {
 }
 
 /**
- * Get user name.
+ * Get username.
  *
  * @return string
  */

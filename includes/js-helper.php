@@ -17,7 +17,7 @@ add_action( 'init', function() {
 		'updated'  => apply_filters( 'cookie_tasting_updated_key', 'last_updated' ),
 		'guest'    => cookie_tasting_guest_name(),
 		'nonce_ep' => rest_url( 'cookie/v1/nonce' ),
-		'debug'    => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'true' : '',
+		'debug'    => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'true' : '',
 	] );
 	wp_register_script( 'cookie-tasting-heartbeat', $asset_dir . '/js/heartbeat.js', [ 'jquery', 'cookie-tasting', 'wp-api-fetch' ], cookie_tasting_version(), true );
 } );

@@ -4,7 +4,7 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: cookie, membership, cache  
 Requires at least: 5.9  
 Requires PHP: 7.0  
-Tested up to: 5.5  
+Tested up to: 6.2  
 Stable tag: nightly  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -86,14 +86,14 @@ $('.read-more').click( function( e ) {
 } );
 ```
 
-Plese remember adding dependency for `cookie-tasting-heartbeat` to your script.
+Please remember adding a dependency for `cookie-tasting-heartbeat` to youar script.
 
 ### Handle UUID
 
-By default, this plugin set UUID for each user. This will be...
+By default, this plugin sets UUID for each user. This will be...
 
-* Unique for each logged in user and will be saved as user_meta.
-* Also kept for anonymous user.
+* Unique for each logged-in user and will be saved as user_meta.
+* Also kept for anonymous users.
 
 So you can use it for Google Analytic's [User ID View](https://support.google.com/analytics/answer/3123662).
 
@@ -105,7 +105,7 @@ ga( 'set', "userId", uid );
 
 ## Installation
 
-* Download zip file and unpack it.
+* Download the zip file and unpack it.
 * Upload the directory to `wp-content/plugins`.
 * Go to WordPress admin screen and activate this plugin.
 
@@ -119,6 +119,10 @@ This plugin is hosted on [Github](https://github.com/tarosky/cookie-tasting).
 Please feel free to make an issue or send pull requests.
 
 ## Changelog
+
+### 1.1.0
+
+* Drop older PHP version. Now requires PHP 7.2 and over.
 
 ### 1.0.11
 

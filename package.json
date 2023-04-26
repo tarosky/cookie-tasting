@@ -2,6 +2,9 @@
 	"name": "cookie-tasting",
 	"homepage": "https://tarosky.co.jp",
 	"main": "gulpfile.js",
+	"engines": {
+		"node": ">=14.0.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/tarosky/cookie-tasting.git"
@@ -15,7 +18,7 @@
 		"cli": "wp-env run cli wp",
 		"env": "wp-env",
 		"lint": "wp-scripts lint-js src/js/**/*.js",
-		"fix": "wp-scripts lint-js -src/js/**/*.js",
+		"fix": "wp-scripts lint-js src/js/**/*.js --fix",
 		"scripts": "wp-scripts",
 		"test": "wp-env run tests-cli ./wp-content/plugins/cookie-tasting/vendor/bin/phpunit -c ./wp-content/plugins/cookie-tasting/phpunit.xml.dist"
 	},
@@ -25,12 +28,12 @@
 		"@wordpress/env": "^5.0.0",
 		"@wordpress/scripts": "^26.2.0",
 		"babel-loader": "^8.0.5",
-		"core-js": "^2.6.5",
+		"core-js": "^3.30.1",
 		"gulp": "^4.0.0",
-		"gulp-load-plugins": "^1.2",
+		"gulp-load-plugins": "^2.0",
 		"gulp-notify": "^3.2.0",
 		"gulp-plumber": "^1.2.0",
-		"gulp-rename": "^1.4.0",
+		"gulp-rename": "^2.0.0",
 		"node-fetch": "^3.3.1",
 		"vinyl-named": "^1.1.0",
 		"webpack": "^5.80.0",

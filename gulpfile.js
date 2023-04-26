@@ -30,7 +30,10 @@ gulp.task( 'js', function () {
 								presets: [
 									[
 										'@babel/preset-env',
-										{ 'useBuiltIns': 'usage' }
+										{
+											'useBuiltIns': 'usage',
+											'corejs': 3
+										}
 									]
 								],
 								plugins: [ '@babel/plugin-transform-react-jsx' ]

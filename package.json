@@ -2,6 +2,9 @@
 	"name": "cookie-tasting",
 	"homepage": "https://tarosky.co.jp",
 	"main": "gulpfile.js",
+	"engines": {
+		"node": ">=14.0.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/tarosky/cookie-tasting.git"

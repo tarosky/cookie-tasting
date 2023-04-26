@@ -75,6 +75,9 @@ jobs:
       - name: Check JS & CSS syntax
         run: npm run lint
 
+      - name: Check Build succeeds
+        run: npm run build
+
   statuscheck:
     name: Status Check
     needs: [ test, assets ]

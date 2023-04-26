@@ -15,7 +15,7 @@
 		"cli": "wp-env run cli wp",
 		"env": "wp-env",
 		"lint": "wp-scripts lint-js src/js/**/*.js",
-		"fix": "wp-scripts lint-js -src/js/**/*.js",
+		"fix": "wp-scripts lint-js src/js/**/*.js --fix",
 		"scripts": "wp-scripts",
 		"test": "wp-env run tests-cli ./wp-content/plugins/cookie-tasting/vendor/bin/phpunit -c ./wp-content/plugins/cookie-tasting/phpunit.xml.dist"
 	},

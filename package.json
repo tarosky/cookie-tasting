@@ -36,7 +36,7 @@
 		"gulp-rename": "^2.0.0",
 		"node-fetch": "^3.3.1",
 		"vinyl-named": "^1.1.0",
-		"webpack": "^4.19.1",
+		"webpack": "^5.80.0",
 		"webpack-stream": "^5.1.1"
 	}
 }

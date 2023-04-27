@@ -4,7 +4,7 @@ Contributors: tarosky,Takahashi_Fumiki
 Tags: cookie, membership, cache  
 Requires at least: 5.9  
 Requires PHP: 7.0  
-Tested up to: 6.2  
+Tested up to: 6.0  
 Stable tag: nightly  
 License: GPL 3.0 or later  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

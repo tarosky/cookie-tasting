@@ -2,7 +2,7 @@ name: Latest WP Support
 
 on:
   schedule:
-    - cron: "10 * * * 4"
+    - cron: "0 2 5 * *" # Every month on the 5th at 2am UTC
 
 jobs:
   is-outdated:

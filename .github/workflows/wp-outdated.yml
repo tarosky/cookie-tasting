@@ -1,6 +1,8 @@
+name: Latest WP Support
+
 on:
   schedule:
-    - cron: "0 5 * * 4"
+    - cron: "10 * * * 4"
 
 jobs:
   is-outdated:
@@ -23,7 +25,7 @@ jobs:
         run: 'echo "WP_OUTDATED_MESSAGE=\"$(npm run outdated | tail -n 1)\"" >> "$GITHUB_OUTPUT"'
 
       - name: Update Issue if needed
-        if: ${{ contains( steps.outdated.outputs.WP_OUTDATED_MESSAGE, "[UPDATE]" ) }}
+        if: contains(steps.outdated.outputs.WP_OUTDATED_MESSAGE, '[UPDATE]' )
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.github_token }}

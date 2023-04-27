@@ -1,0 +1,38 @@
+on:
+  schedule:
+    - cron: "0 5 * * 4"
+
+jobs:
+  is-outdated:
+    name: Check if WP version is outdated
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Install Node
+        uses: actions/setup-node@master
+        with:
+          node-version: '18'
+
+      - name: Install NPM Packages
+        run: npm install
+
+      - name: Run WP Outdated
+        id: outdated
+        run: 'echo "WP_OUTDATED_MESSAGE=\"$(npm run outdated | tail -n 1)\"" >> "$GITHUB_OUTPUT"'
+
+      - name: Update Issue if needed
+        if: ${{ contains( steps.outdated.outputs.WP_OUTDATED_MESSAGE, "[UPDATE]" ) }}
+        uses: actions-ecosystem/action-create-issue@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          title: ${{ steps.outdated.outputs.WP_OUTDATED_MESSAGE }}
+          body: |
+            ## TODO
+
+            - [ ] Check if plugin works with latest WP version
+            - [ ] Bump "Tested up to" version in README.md
+
+          labels: |
+            update

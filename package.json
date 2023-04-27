@@ -20,11 +20,13 @@
 		"lint": "wp-scripts lint-js src/js/**/*.js",
 		"fix": "wp-scripts lint-js src/js/**/*.js --fix",
 		"scripts": "wp-scripts",
+		"outdated": "wp-outdated",
 		"test": "wp-env run tests-cli ./wp-content/plugins/cookie-tasting/vendor/bin/phpunit -c ./wp-content/plugins/cookie-tasting/phpunit.xml.dist"
 	},
 	"author": "Tarosky inc.",
 	"license": "GPL-3.0-or-later",
 	"devDependencies": {
+		"@tarosky/farmhand": "^1.2.0",
 		"@wordpress/env": "^5.0.0",
 		"@wordpress/scripts": "^26.2.0",
 		"babel-loader": "^8.0.5",

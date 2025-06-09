@@ -28,7 +28,7 @@
 	"devDependencies": {
 		"@tarosky/farmhand": "^1.2.0",
 		"@wordpress/env": "^8.4.0",
-		"@wordpress/scripts": "^26.2.0",
+		"@wordpress/scripts": "^30.18.0",
 		"babel-loader": "^8.0.5",
 		"core-js": "^3.30.1",
 		"gulp": "^4.0.0",

@@ -1,40 +1,24 @@
-name: Latest WP Support
+name: Check WP Version
 
 on:
   schedule:
-    - cron: "0 2 5 * *" # Every month on the 5th at 2am UTC
+    - cron: '0 2 5 * *'
+  workflow_dispatch:
 
 jobs:
   is-outdated:
-    name: Check if WP version is outdated
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
 
-      - name: Install Node
-        uses: actions/setup-node@master
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
-      - name: Install NPM Packages
-        run: npm install
-
-      - name: Run WP Outdated
-        id: outdated
-        run: 'echo "WP_OUTDATED_MESSAGE=\"$(npm run outdated | tail -n 1)\"" >> "$GITHUB_OUTPUT"'
-
-      - name: Update Issue if needed
-        if: contains(steps.outdated.outputs.WP_OUTDATED_MESSAGE, '[UPDATE]' )
-        uses: actions-ecosystem/action-create-issue@v1
+      - name: Check if WordPress is outdated
+        uses: tarosky/farmhand-wp-action@v1
         with:
-          github_token: ${{ secrets.github_token }}
-          title: ${{ steps.outdated.outputs.WP_OUTDATED_MESSAGE }}
-          body: |
-            ## TODO
-
-            - [ ] Check if plugin works with latest WP version
-            - [ ] Bump "Tested up to" version in README.md
-
-          labels: |
-            update
+          assignees: fumikito
+          label: wp-org

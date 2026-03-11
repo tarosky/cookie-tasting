@@ -3,7 +3,7 @@
 Contributors: tarosky,Takahashi_Fumiki  
 Tags: cookie, membership, cache  
 Requires at least: 5.9  
-Requires PHP: 7.0  
+Requires PHP: 7.4  
 Tested up to: 6.2  
 Stable tag: nightly  
 License: GPL 3.0 or later  

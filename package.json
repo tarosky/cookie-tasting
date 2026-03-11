@@ -31,7 +31,7 @@
 	"license": "GPL-3.0-or-later",
 	"devDependencies": {
 		"@kunoichi/grab-deps": "^3.0.0",
-		"@wordpress/env": "^8.4.0",
+		"@wordpress/env": "^10.0",
 		"@wordpress/scripts": "^30.0.0",
 		"autoprefixer": "^10.4.16",
 		"husky": "^9.1.7",

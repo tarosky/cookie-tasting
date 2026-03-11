@@ -5,7 +5,7 @@ set -e
 # Build files
 composer install --no-dev --prefer-dist
 npm install
-npm run build
+npm run package
 
 # Make Readme
 echo 'Generate readme.'

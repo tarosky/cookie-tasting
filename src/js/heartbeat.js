@@ -93,9 +93,12 @@ CookieTasting.testBefore = () => {
 };
 
 // Check periodically user is logged in.
-setInterval( function () {
-	CookieTasting.confirm();
-}, ( CookieTasting.getInterval() * 1000 ) / 2 );
+setInterval(
+	function () {
+		CookieTasting.confirm();
+	},
+	( CookieTasting.getInterval() * 1000 ) / 2
+);
 
 // Check if timestamp is outdated.
 $( document ).ready( function () {

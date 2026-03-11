@@ -46,7 +46,7 @@ jobs:
     uses: tarosky/workflows/.github/workflows/npm.yml@main
     with:
       node_version: 22
-      package: build
+      package: package
 
   status-check:
     name: Status Check

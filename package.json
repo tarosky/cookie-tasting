@@ -3,7 +3,7 @@
 	"homepage": "https://tarosky.co.jp",
 	"main": "gulpfile.js",
 	"engines": {
-		"node": ">=14.0.0"
+		"node": ">=22.0"
 	},
 	"repository": {
 		"type": "git",

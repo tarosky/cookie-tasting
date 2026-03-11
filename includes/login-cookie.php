@@ -11,8 +11,8 @@ defined( 'ABSPATH' ) || die();
 /**
  * Save cookie when user logged in.
  */
-add_action( 'set_auth_cookie', function( $auth_cookie, $expire, $expiration, $user_id ) {
-	add_filter( 'cookie_tasting_values', function( $values ) {
+add_action( 'set_auth_cookie', function ( $auth_cookie, $expire, $expiration, $user_id ) {
+	add_filter( 'cookie_tasting_values', function ( $values ) {
 		$values['refresh_nonce'] = '1';
 		return $values;
 	} );
@@ -22,7 +22,7 @@ add_action( 'set_auth_cookie', function( $auth_cookie, $expire, $expiration, $us
 /**
  * Clear cookie when user logged out.
  */
-add_action( 'clear_auth_cookie', function() {
+add_action( 'clear_auth_cookie', function () {
 	// Clear global cookies.
 	cookie_tasting_flush();
 } );

@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
-        php: [ '7.2', '7.4', '8.0' ] # PHP versions to check.
+        php: [ '7.4', '8.0' ] # PHP versions to check.
         wp: [ 'latest', '5.9' ]      # WordPress version to check.
     services:
       mysql:
@@ -98,7 +98,7 @@ jobs:
       - name: Setup PHP with composer
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.2
+          php-version: 7.4
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

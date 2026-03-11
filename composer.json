@@ -21,7 +21,7 @@
 	},
 	"minimum-stability": "stable",
 	"require": {
-		"php": ">=7.2",
+		"php": ">=7.4",
 		"ramsey/uuid": "^4.2"
 	},
 	"require-dev": {
@@ -38,6 +38,9 @@
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"platform": {
+			"php": "7.4"
 		}
 	}
 }

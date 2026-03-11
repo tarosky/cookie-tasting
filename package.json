@@ -10,6 +10,7 @@
 		"url": "http://github.com/tarosky/cookie-tasting.git"
 	},
 	"scripts": {
+		"prepare": "husky",
 		"start": "wp-env start",
 		"update": "wp-env start --update",
 		"build": "gulp build",
@@ -39,6 +40,12 @@
 		"node-fetch": "^3.3.1",
 		"vinyl-named": "^1.1.0",
 		"webpack": "^5.80.0",
-		"webpack-stream": "^7.0.0"
+		"webpack-stream": "^7.0.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7"
+	},
+	"lint-staged": {
+		"*.js": "npm run lint",
+		"*.php": "composer lint"
 	}
 }

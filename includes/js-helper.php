@@ -9,7 +9,7 @@
  * Register scripts.
  */
 add_action( 'init', function() {
-	$asset_dir = plugin_dir_url( __DIR__ ) . 'assets';
+	$asset_dir = plugin_dir_url( __DIR__ ) . 'dist';
 	wp_register_script( 'cookie-tasting', $asset_dir . '/js/cookie.js', [], cookie_tasting_version(), false );
 	wp_localize_script( 'cookie-tasting', 'CookieTasting', [
 		'interval' => cookie_tasting_interval(),

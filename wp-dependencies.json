@@ -1,0 +1,24 @@
+[
+	{
+		"handle": "heartbeat",
+		"path": "dist/js/heartbeat.js",
+		"ext": "js",
+		"hash": "793221ed032bb0f5a074fd4205899cd8",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	},
+	{
+		"handle": "cookie",
+		"path": "dist/js/cookie.js",
+		"ext": "js",
+		"hash": "e96ad49d6019e77d536e80f8324790dc",
+		"version": "0.0.0",
+		"deps": [],
+		"footer": true,
+		"media": "all",
+		"strategy": ""
+	}
+]

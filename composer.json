@@ -16,7 +16,8 @@
 		],
 		"fix": [
 			"phpcbf --standard=phpcs.ruleset.xml ./includes cookie-tasting.php"
-		]
+		],
+		"phpstan": "phpstan analyse --memory-limit=1G"
 	},
 	"minimum-stability": "stable",
 	"require": {
@@ -29,7 +30,10 @@
 		"wp-coding-standards/wpcs": "^3.0",
 		"yoast/phpunit-polyfills": "^2.0",
 		"phpcompatibility/php-compatibility": "^10.0@dev",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpstan/phpstan": "^2.1",
+		"szepeviktor/phpstan-wordpress": "^2.0",
+		"php-stubs/wordpress-stubs": "^6.9"
 	},
 	"config": {
 		"allow-plugins": {

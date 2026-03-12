@@ -37,8 +37,6 @@ function cookie_tasting_version() {
 function cookie_tasting_init() {
 	// Load autoloader
 	require __DIR__ . '/vendor/autoload.php';
-	// Load text domain.
-	load_plugin_textdomain( 'cookie', false, basename( __DIR__ ) . '/languages' );
 	// Includes all hooks.
 	$include_dir = __DIR__ . '/includes';
 	foreach ( scandir( $include_dir ) as $file ) {
@@ -48,6 +46,45 @@ function cookie_tasting_init() {
 	}
 }
 add_action( 'plugins_loaded', 'cookie_tasting_init' );
+
+/**
+ * Register all assets from wp-dependencies.json.
+ *
+ * @return void
+ */
+function cookie_tasting_register_assets() {
+	$json = __DIR__ . '/wp-dependencies.json';
+	if ( ! file_exists( $json ) ) {
+		return;
+	}
+	$dependencies = json_decode( file_get_contents( $json ), true );
+	if ( empty( $dependencies ) ) {
+		return;
+	}
+	$base = trailingslashit( plugin_dir_url( __FILE__ ) );
+	foreach ( $dependencies as $dep ) {
+		if ( empty( $dep['path'] ) ) {
+			continue;
+		}
+		$url = $base . $dep['path'];
+		switch ( $dep['ext'] ) {
+			case 'css':
+				wp_register_style( $dep['handle'], $url, $dep['deps'], $dep['hash'], $dep['media'] );
+				break;
+			case 'js':
+				$footer = [ 'in_footer' => $dep['footer'] ];
+				if ( in_array( $dep['strategy'], [ 'defer', 'async' ], true ) ) {
+					$footer['strategy'] = $dep['strategy'];
+				}
+				wp_register_script( $dep['handle'], $url, $dep['deps'], $dep['hash'], $footer );
+				if ( in_array( 'wp-i18n', $dep['deps'], true ) ) {
+					wp_set_script_translations( $dep['handle'], 'cookie' );
+				}
+				break;
+		}
+	}
+}
+add_action( 'init', 'cookie_tasting_register_assets' );
 
 
 /**

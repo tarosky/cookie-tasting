@@ -13,6 +13,8 @@ node_modules
 composer.lock
 package-lock.json
 phpcs.ruleset.xml
+phpstan-baseline.neon
+phpstan.neon
 phpunit.xml.dist
 README.md
 webpack.config.js

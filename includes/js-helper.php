@@ -6,11 +6,9 @@
  */
 
 /**
- * Register scripts.
+ * Localize and enqueue scripts.
  */
 add_action( 'init', function() {
-	$asset_dir = plugin_dir_url( __DIR__ ) . 'dist';
-	wp_register_script( 'cookie-tasting', $asset_dir . '/js/cookie.js', [], cookie_tasting_version(), false );
 	wp_localize_script( 'cookie-tasting', 'CookieTasting', [
 		'interval' => cookie_tasting_interval(),
 		'name'     => apply_filters( 'cookie_tasting_name_key', 'name' ),
@@ -19,8 +17,7 @@ add_action( 'init', function() {
 		'nonce_ep' => rest_url( 'cookie/v1/nonce' ),
 		'debug'    => ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'true' : '',
 	] );
-	wp_register_script( 'cookie-tasting-heartbeat', $asset_dir . '/js/heartbeat.js', [ 'jquery', 'cookie-tasting', 'wp-api-fetch' ], cookie_tasting_version(), true );
-} );
+}, 20 );
 
 /**
  * Enqueue scripts.

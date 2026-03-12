@@ -1,7 +1,8 @@
-/**
+/*!
  * Cookie tasting base utility.
  *
- * @package
+ * @handle cookie-tasting
+ * @footer false
  */
 
 /*global CookieTasting: true*/

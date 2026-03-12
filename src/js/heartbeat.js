@@ -1,6 +1,8 @@
-/**
+/*!
  * Watch cookie taste.
  *
+ * @handle cookie-tasting-heartbeat
+ * @deps jquery, cookie-tasting, wp-api-fetch
  */
 
 /* global CookieTasting: true */

@@ -29,6 +29,8 @@ jobs:
     outputs:
       pr_number: ${{ steps.pr.outputs.number }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Get PR number
         id: pr
         run: |
@@ -46,8 +48,7 @@ jobs:
       ci_checks: "PHPStan Level 5, PHPCS, PHPUnit, asset build"
       pr_number: ${{ fromJSON(needs.setup.outputs.pr_number) }}
       head_sha: ${{ github.event.workflow_run.head_sha }}
-    secrets:
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    secrets: inherit
 
   # @claude コメントで手動レビュー（メンバーのみ）
   call-claude:

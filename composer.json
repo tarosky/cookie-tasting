@@ -11,12 +11,8 @@
 	],
 	"scripts": {
 		"test": "phpunit",
-		"lint": [
-			"phpcs --standard=phpcs.ruleset.xml ./includes cookie-tasting.php"
-		],
-		"fix": [
-			"phpcbf --standard=phpcs.ruleset.xml ./includes cookie-tasting.php"
-		],
+		"lint": "phpcs --standard=phpcs.ruleset.xml",
+		"fix": "phpcbf --standard=phpcs.ruleset.xml",
 		"phpstan": "phpstan analyse --memory-limit=1G"
 	},
 	"minimum-stability": "stable",

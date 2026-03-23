@@ -32,6 +32,9 @@
 		<config name="testVersion" value="7.2-"/>
 	</rule>
 
+	<file>cookie-tasting.php</file>
+	<file>includes</file>
+
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*.js</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>

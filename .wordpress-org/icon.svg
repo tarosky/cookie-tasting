@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <circle cx="128" cy="128" r="120" fill="#00a9d9"/><path d="M43.43,43.43 A120,120 0 0 1 212.57,212.57 Z" fill="#000000"/>
+  <defs><mask id="ck">
+    <rect width="256" height="256" fill="#000"/>
+    <circle cx="120" cy="130" r="66" fill="#fff"/>
+    <circle cx="174" cy="86" r="26" fill="#000"/>
+    <circle cx="100" cy="118" r="9" fill="#000"/>
+    <circle cx="138" cy="132" r="8" fill="#000"/>
+    <circle cx="108" cy="156" r="7" fill="#000"/>
+    <circle cx="146" cy="162" r="8" fill="#000"/>
+    <circle cx="86" cy="140" r="6" fill="#000"/>
+  </mask></defs>
+  <rect width="256" height="256" fill="#fff" mask="url(#ck)"/>
+</svg>
